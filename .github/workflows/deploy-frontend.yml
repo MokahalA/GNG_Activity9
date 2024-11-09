@@ -22,6 +22,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Set up pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.x
+      
+      # Verify pnpm installation
+      - name: Check pnpm version
+        run: pnpm --version
+
+      # Install frontend dependencies
+      - name: Install dependencies
+        run: pnpm install
+
       # Set up Node.js environment
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -29,12 +43,6 @@ jobs:
           node-version: '18'
           cache: 'pnpm'
 
-      # Set up pnpm
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8.x
-          
       # Build the Next.js application
       - name: Build project
         run: pnpm build
