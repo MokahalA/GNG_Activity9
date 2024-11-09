@@ -1,0 +1,43 @@
+name: Deploy Frontend to Vercel
+
+on:
+  push:
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'next.config.js'
+      - 'package.json'
+      - 'yarn.lock'
+      - 'tsconfig.json'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: yarn install
+
+      # Build the Next.js application
+      - name: Build project
+        run: yarn build
+
+      # Deploy to Vercel
+      - name: Deploy to Vercel
+        run: |
+          npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --confirm --scope ${{ secrets.VERCEL_ORG_ID }}
+        env:
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
