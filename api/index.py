@@ -55,16 +55,12 @@ def create_todo_item(todo: TodoCreate):
     todos.append(new_todo)
     return new_todo
 
-# Route to get all todo items
-
-
+# Route to get all to-do items
 @app.get("/api/todos")
 def get_all_todo_items():
     return todos
 
 # Route to get a specific todo item by ID
-
-
 @app.get("/api/todos/{todo_id}")
 def get_todo_item(todo_id: int):
     for todo in todos:
