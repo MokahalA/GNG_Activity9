@@ -1,14 +1,14 @@
 name: CodeQL Analysis for FastAPI Backend
 
 on:
+  # Trigger on push events that affect files in the `api/` folder
   push:
     paths:
       - 'api/**'
+  # Trigger on pull requests that affect files in the `api/` folder
   pull_request:
     paths:
       - 'api/**'
-  schedule:
-    - cron: '0 2 * * 1'  # Run weekly on Mondays at 2 AM UTC
 
 jobs:
   codeql:
