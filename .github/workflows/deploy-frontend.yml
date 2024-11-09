@@ -7,7 +7,7 @@ on:
       - 'public/**'
       - 'next.config.js'
       - 'package.json'
-      - 'yarn.lock'
+      - 'pnpm-lock.yaml'
       - 'tsconfig.json'
   workflow_dispatch:
 
@@ -25,15 +25,19 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'yarn'
+          cache: 'pnpm'
 
-      # Install dependencies
+      # Install pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      # Install dependencies using pnpm
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
 
       # Build the Next.js application
       - name: Build project
-        run: yarn build
+        run: pnpm build
 
       # Deploy to Vercel
       - name: Deploy to Vercel
