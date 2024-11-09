@@ -35,13 +35,11 @@ jobs:
         with:
           python-version: '3.10'
 
-      # Step 3: Set up CodeQL
+      # Step 3: Initialize CodeQL analysis using default queries
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
           languages: ${{ matrix.language }}
-          # Include the path to your FastAPI code
-          queries: +api/
 
       # Step 4: Install dependencies
       - name: Install Python dependencies
