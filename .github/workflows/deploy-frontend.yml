@@ -34,11 +34,7 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 8.x
-
-      # Install frontend dependencies using pnpm
-      - name: Install dependencies
-        run: pnpm install
-
+          
       # Build the Next.js application
       - name: Build project
         run: pnpm build
