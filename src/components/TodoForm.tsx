@@ -31,7 +31,7 @@ export default function TodoForm() {
       <button
         disabled={loading}
         className={`px-2 py-1 text-white rounded ${
-          loading ? "bg-gray-400" : "bg-green-500"
+          loading ? "bg-gray-400" : "bg-blue-500"
         }`}
         onClick={handleCreateTodo}
       >
